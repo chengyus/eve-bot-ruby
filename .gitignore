@@ -1,0 +1,36 @@
+.direnv/
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+eve-bot-framework/asteroids.mined
+eve-bot-framework/local.db
+**/*.swp
+**/env*/
+**/*debug.json
+**/*.db
+**/*.sql
+eve-bot-application.spec
+dist
+build
+
+dist
+build/
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+
+node_modules/
+# NuGet v3's project.json files produces more ignorable files
+*.nuget.props
+*.nuget.targets
+# NuGet Packages
+*.nupkg
+

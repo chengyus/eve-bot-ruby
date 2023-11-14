@@ -1,0 +1,27 @@
+{
+  "name": "EVE Online - Mining Bot",
+  "uses": "MiningBot",
+  "with_narration": true,
+  "focus": true,
+  "loop": true,
+  "start_from": "mine_asteroids",
+  "scanners": [
+    "EnemyScanner"
+  ],
+  "args": {
+    "deploy_drones_while_mining": true,
+    "station": "Todaki VI - Moon 1 - School of Applied Knowledge",
+    "number_of_miners": 1,
+    "asteroids_of_interest": [
+        "Massive Scordite",
+        "Dense Veldspar"
+    ]
+  },
+  "steps": [
+    "mine_asteroids",
+    "warp_to_station"
+  ],
+  "emergency_steps": [
+    "warp_to_station"
+  ]
+}
