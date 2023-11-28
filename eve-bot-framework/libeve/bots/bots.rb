@@ -34,7 +34,7 @@ class Bot
   end
 
   def check_pause_interrupt
-    while @pause_interrupt && @pause_interrupt.set?
+    while @pause_interrupt && @pause_interrupt.set? do
       if !@paused
         @paused = true
         @pause_callback&.call
@@ -179,7 +179,7 @@ class Bot
   def wait_until_warp_finished
     wait_for({_setText: 'Warp Drive Active'})
     say('warp drive active')
-    while @tree.find_node({_setText: 'Warp Drive Active'})
+    while @tree.find_node({_setText: 'Warp Drive Active'}) do
       sleep(2)
     end
     say('warp drive disengaged')
@@ -189,7 +189,7 @@ class Bot
   def wait_until_jump_finished
     wait_for({_setText: 'Jumping'})
     say('jumping')
-    while @tree.find_node({_setText: 'Jumping'})
+    while @tree.find_node({_setText: 'Jumping'}) do
       sleep(2)
     end
     sleep(2)
@@ -214,58 +214,33 @@ class Bot
 
     click_node(recall_btn)
     sleep(5)
+  end
 
-
-  def ensure_within_station
-    undock_btn = wait_for(
-      { '_setText': 'Undock' },
-      type: 'LabelThemeColored',
-      until: 5
-    )
+  def ensure_within_station()
+    undock_btn = wait_for( { '_setText': 'Undock' }, type: 'LabelThemeColored', until: 5)
     return if undock_btn
   
     recall_drones
   
-    loop do
-      wait_for_overview
-      say('Finding station')
-      sleep(3)
+    wait_for_overview
+    say('Finding station')
+    sleep(3)
   
-      station = wait_for(
-        { '_text': @station },
-        type: 'OverviewLabel',
-        until: 10
-      )
+    station = wait_for( { '_text': @station }, type: 'OverviewLabel', until: 10)
   
-      unless station
-        warpto_tab = wait_for(
-          { '_setText': 'WarpTo' },
-          type: 'LabelThemeColored'
-        )
-  
-        click_node(
-          warpto_tab,
-          times: 2,
-          expect: [{ '_text': @station }],
-          expect_args: { 'type': 'OverviewLabel' }
-        )
-  
-        station = wait_for({ '_text': @station }, type: 'OverviewLabel')
-      end
-  
-      click_node(station)
-  
-      dock_btn = wait_for(
-        { '_name': 'selectedItemDock' },
-        type: 'SelectedItemButton'
-      )
-  
-      click_node(dock_btn)
-  
-      wait_until_warp_finished if wait_for({ '_setText': 'Establishing Warp Vector' }, until: 5)
-  
-      break
+    unless(station) 
+      warpto_tab = wait_for( { '_setText': 'WarpTo' }, type: 'LabelThemeColored')
+      click_node( warpto_tab, times: 2, expect: [{ '_text': @station }], expect_args: { 'type': 'OverviewLabel' })
+      station = wait_for({ '_text': @station }, type: 'OverviewLabel')
     end
+  
+    click_node(station)
+  
+    dock_btn = wait_for( { '_name': 'selectedItemDock' }, type: 'SelectedItemButton')
+  
+    click_node(dock_btn)
+  
+    wait_until_warp_finished if wait_for({ '_setText': 'Establishing Warp Vector' }, until: 5)
   
     wait_for({ '_setText': 'Undock' }, type: 'LabelThemeColored')
     sleep(5)

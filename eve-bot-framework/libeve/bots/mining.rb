@@ -483,7 +483,6 @@ class MiningBot
         asteroids = wait_for(
           { '_text': 'Asteroid (' },
           type: 'OverviewLabel',
-          select_many: true
           select_many: true,
           contains: true,
           until: 5
