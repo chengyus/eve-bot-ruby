@@ -85,7 +85,11 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.3.0)
     nested_inherited_jruby_include_package (0.3.0)
+    nio4r (2.7.0)
+    nio4r (2.7.0-java)
     nokogiri (1.15.5-java)
+      racc (~> 1.4)
+    nokogiri (1.15.5-x64-mingw-ucrt)
       racc (~> 1.4)
     oauth2 (1.4.11)
       faraday (>= 0.17.3, < 3.0)
@@ -96,11 +100,18 @@ GEM
     os (1.1.4)
     pastel (0.8.0)
       tty-color (~> 0.5)
+    psych (5.1.1.1)
+      stringio
     psych (5.1.1.1-java)
       jar-dependencies (>= 0.1.7)
     public_suffix (5.0.4)
+    puma (6.4.0)
+      nio4r (~> 2.0)
+    puma (6.4.0-java)
+      nio4r (~> 2.0)
     puts_debuggerer (0.13.5)
       awesome_print (~> 1.9.2)
+    racc (1.7.3)
     racc (1.7.3-java)
     rack (3.0.8)
     rake (13.1.0)
@@ -132,9 +143,13 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
+    sinatra (1.0)
+      rack (>= 1.0)
+    stringio (3.1.0)
     super_module (1.4.1)
       method_source (>= 0.8.2, < 1.1.0)
     text-table (1.2.4)
+    thread_safe (0.3.6)
     thread_safe (0.3.6-java)
     tty-color (0.6.0)
     tty-cursor (0.7.1)
@@ -155,13 +170,16 @@ GEM
 
 PLATFORMS
   universal-java-21
+  x64-mingw-ucrt
 
 DEPENDENCIES
   glimmer-dsl-swt (~> 4.29.0.0)
   jar-dependencies (= 0.4.1)
   juwelier (= 2.4.9)
+  puma
   rspec (~> 3.5.0)
   simplecov
+  sinatra
   warbler (= 2.0.5)
 
 BUNDLED WITH
