@@ -1,4 +1,5 @@
-eve-bot-ruby===================
+eve-bot-ruby
+------------------------------------------
 
 This is just a repo for converting this eve-memory-reader to a potential Ruby-based code (currently using glimmer-dsl-swt gem). Although it is pure Ruby code, please read up on glimmer-dsl-swt gem documentation as it require Java, Jruby, and a Windows-flavored Ruby to setup. And the Git, FFI DLL support (which requires RUBY\_DLL\_PATH environment variable to be set.  And personal preference I would use Ruby32-x64's ucrt64 shell (which was weird because it requires various windows execute path to be set in the Bash init such as .bash\_profile and also maybe ridk (not quite sure what's it for, but it seems to provide some sort of Ruby integrated development kit, current usage is mostly for the ls command before the ucrt64 window border with a cygwin-like border and paste ability. But yes, a very C-like development place with 64bit support).  
 
