@@ -173,26 +173,28 @@ class Application
       text 'EVE Online - Bot Application'
       minimum_size 1024, 768
 
-      #row_layout(:vertical) { fill true; center true }
+      row_layout(:vertical) { fill true; center true }
 
-      ##on_close { dispose }
-      #composite {
-      #  grid_layout(1, false) { margin_width 10; margin_height 10 }
-      #  file_list_column.each do |row_elements|
-      #    composite {
-      #      row_layout(:horizontal) { fill true; center true }
-      #      row_elements.each do |element|
-      #        if element.is_a?(Array)
-      #          element.each do |inner_element|
-      #            create_element(inner_element)
-      #          end
-      #        else
-      #          create_element(element)
-      #        end
-      #      end
-      #    }
-      #  end
-      #}
+      #on_close do 
+      #  dispose
+      #end 
+      composite {
+        grid_layout(1, false) { margin_width 10; margin_height 10 }
+        file_list_column.each do |row_elements|
+          composite {
+            row_layout(:horizontal) { fill true; center true }
+            row_elements.each do |element|
+              if element.is_a?(Array)
+                element.each do |inner_element|
+                  create_element(inner_element)
+                end
+              else
+                create_element(element)
+              end
+            end
+          }
+        end
+      }
     }
   end
 
@@ -202,48 +204,48 @@ class Application
   end
 
   def create_element(element)
-  #  case element[:type]
-  #  when 'Button'
-  #    button(element[:text]) {
-  #      layout_data { 
-  #        width 200
-  #        height 100 
-  #      }
-  #      enabled element[:enabled]
-  #      on_widget_selected { send(element[:key]) } if element[:key]
-  #    }
-  #  when 'Text'
-  #    text(element[:text]) {
-  #      layout_data { 
-  #        width 200
-  #        height 100 
-  #      }
-  #    }
-  #  when 'MultiLine'
-  #    multi_line {
-  #      layout_data(:fill, :end, true, false)
-  #      enabled element[:enabled]
-  #    }
-  #  when 'In'
-  #    text {
-  #      layout_data {
-  #        width 200
-  #        height 100
-  #      }
-  #      enabled element[:enabled]
-  #      on_key_pressed { |event| load(event.text) if event.character == 13 } # Enter key
-  #    }
-  #  when 'FileBrowse'
-  #    button {
-  #      text 'Browse'
-  #      layout_data(:fill, :center, true, true)
-  #      on_widget_selected {
-  #        file_dialog = Swt::Widgets::FileDialog.new(@shell.shell, Swt::SWT::OPEN)
-  #        file = file_dialog.open
-  #        @shell.get_text('bot_config_file').text = file if file
-  #      }
-  #    }
-  #  end
+    case element[:type]
+    when 'Button'
+      button(element[:text]) {
+        layout_data { 
+          width 200
+          height 100 
+        }
+        enabled element[:enabled]
+        on_widget_selected { send(element[:key]) } if element[:key]
+      }
+    when 'Text'
+      text(element[:text]) {
+        #layout_data { 
+        #  width 200
+        #  height 100 
+        #}
+      }
+    when 'MultiLine'
+      multi_line {
+        layout_data(:fill, :end, true, false)
+        enabled element[:enabled]
+      }
+    when 'In'
+      text {
+        layout_data {
+          width 200
+          height 100
+        }
+        enabled element[:enabled]
+        on_key_pressed { |event| load(event.text) if event.character == 13 } # Enter key
+      }
+    when 'FileBrowse'
+      button {
+        text 'Browse'
+        layout_data(:fill, :center, true, true)
+        on_widget_selected {
+          file_dialog = Swt::Widgets::FileDialog.new(@shell.shell, Swt::SWT::OPEN)
+          file = file_dialog.open
+          @shell.get_text('bot_config_file').text = file if file
+        }
+      }
+    end
   end
 
   private

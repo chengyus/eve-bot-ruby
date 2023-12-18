@@ -13,5 +13,6 @@ group :development do
   gem 'rspec', '~> 3.5.0'
   gem 'juwelier', '2.4.9'
   gem 'warbler', '2.0.5'
-  gem 'simplecov', '>= 0'
+  #gem 'simplecov', '>= 0'
+  gem 'awesome_print', '~> 1.9', '>= 1.9.2'
 end
